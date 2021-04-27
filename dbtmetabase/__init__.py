@@ -3,10 +3,9 @@ import os
 
 from .metabase import MetabaseClient
 from .parsers.dbt_folder import DbtFolderReader
+from .parsers.dbt_manifest import DbtManifestReader
 
 __version__ = '0.5.2'
-
-from .parsers.dbt_manifest import DbtManifestReader
 
 
 def export(dbt_path: str, dbt_manifest_path: str,
