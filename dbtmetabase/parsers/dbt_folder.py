@@ -23,8 +23,7 @@ class DbtFolderReader:
         self.project_path = project_path
 
     def read_models(self, database, schema, schemas_excludes=[], includes=[], excludes=[], include_tags=True,
-                    dbt_docs_url=None) -> list[
-        MetabaseModel]:
+                    dbt_docs_url=None) -> List[MetabaseModel]:
         """Reads dbt models in Metabase-friendly format.
 
         Keyword Arguments:
