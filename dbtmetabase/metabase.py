@@ -300,13 +300,20 @@ class MetabaseClient:
             kwargs['headers'] = headers
         else:
             headers = kwargs['headers'].copy()
-        
+
         if authenticated:
             headers['X-Metabase-Session'] = self.session_id
 
         response = requests.request(method, f"{self.protocol}://{self.host}{path}", **kwargs)
         if critical:
-            response.raise_for_status()
+            try:
+                response.raise_for_status()
+            except requests.exceptions.HTTPError:
+                if 'session' in path:
+                    logging.error(f"HTTP request failed. Response: {response.text}")
+                else:
+                    logging.error(f"HTTP request failed. Payload: {kwargs['json']}. Response: {response.text}")
+                raise
         elif not response.ok:
             return False
         return json.loads(response.text)
