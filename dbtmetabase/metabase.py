@@ -306,11 +306,7 @@ class MetabaseClient:
 
         response = requests.request(method, f"{self.protocol}://{self.host}{path}", **kwargs)
         if critical:
-            try:
-                response.raise_for_status()
-            except requests.exceptions.HTTPError:
-                logging.error(f"HTTP request failed. Payload: {kwargs['json']}. Response: {response.text}")
-                raise
+            response.raise_for_status()
         elif not response.ok:
             return False
         return json.loads(response.text)
