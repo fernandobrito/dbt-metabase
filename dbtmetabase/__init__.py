@@ -1,4 +1,5 @@
 import logging
+import os
 
 from .metabase import MetabaseClient
 from .parsers.dbt_folder import DbtFolderReader
@@ -45,8 +46,10 @@ def export(dbt_path: str, dbt_manifest_path: str,
     mbc = MetabaseClient(mb_host, mb_user, mb_password, mb_https)
 
     if dbt_path:
+        dbt_path = os.path.expandvars(dbt_path)
         reader = DbtFolderReader(dbt_path)
     else:
+        dbt_manifest_path = os.path.expandvars(dbt_manifest_path)
         reader = DbtManifestReader(dbt_manifest_path)
 
     schemas_excludes = {schema.upper() for schema in schemas_excludes}
