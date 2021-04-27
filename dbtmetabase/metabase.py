@@ -309,7 +309,7 @@ class MetabaseClient:
             try:
                 response.raise_for_status()
             except requests.exceptions.HTTPError:
-                if 'session' in path:
+                if 'password' in kwargs['json']:
                     logging.error(f"HTTP request failed. Response: {response.text}")
                 else:
                     logging.error(f"HTTP request failed. Payload: {kwargs['json']}. Response: {response.text}")
