@@ -22,8 +22,7 @@ class DbtManifestReader:
         self.manifest = None
 
     def read_models(self, database, schema: str, schemas_excludes=[], includes=[], excludes=[], include_tags=True,
-                    dbt_docs_url=None) -> \
-            list[MetabaseModel]:
+                    dbt_docs_url=None) -> List[MetabaseModel]:
         path = os.path.join(self.manifest_path)
 
         mb_models: List[MetabaseModel] = []
