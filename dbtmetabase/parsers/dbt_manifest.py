@@ -114,6 +114,7 @@ class DbtManifestReader:
 
         return MetabaseModel(
             name=model['alias'].upper(),
+            schema=model['schema'].upper(),
             description=description,
             columns=mb_columns
         )

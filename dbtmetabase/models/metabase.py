@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import NamedTuple, Sequence, Optional, Mapping, MutableMapping
+from typing import Sequence, Optional, MutableMapping
 
 # Allowed metabase.* fields
 # Should be covered by attributes in the MetabaseColumn class
@@ -22,6 +22,7 @@ class NonEmptyString:
 
         obj.__dict__[self.name] = value
 
+
 @dataclass
 class MetabaseColumn:
     name: str
@@ -39,6 +40,7 @@ class MetabaseColumn:
 @dataclass
 class MetabaseModel:
     name: str
+    schema: str
     description: NonEmptyString = NonEmptyString()
 
     columns: Sequence[MetabaseColumn] = field(default_factory=list)
