@@ -1,11 +1,11 @@
-import logging
-import yaml
-import requests
 import json
-import time
+import logging
 from typing import Any, Sequence, Optional, Tuple
 
-from dbtmetabase.models.metabase import MetabaseModel, MetabaseColumn
+import requests
+import time
+
+from .models.metabase import MetabaseModel, MetabaseColumn
 
 
 class MetabaseClient:
